@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система GPT: Построй свою воронку</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Tailwind Configuration */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'background-light': '#F8F8F8', /* Light background */
+                        'primary-accent': '#1D4ED8', /* Strong Blue accent */
+                        'secondary-accent': '#F59E0B', /* Orange/Gold accent for text */
+                        'text-dark': '#1F2937', /* Dark text */
+                        'secondary-text': '#4B5563', /* Gray for subtext */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F8F8; /* Light background */
+            color: #1F2937; /* Dark text */
+            line-height: 1.6;
+        }
+        .container-padding {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        @media (min-width: 640px) {
+            .container-padding {
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .container-padding {
+                padding-left: 8rem;
+                padding-right: 8rem;
+            }
+        }
+        
+        /* --- CUSTOM GRADIENT CTA BUTTON STYLE --- */
+        .cta-button {
+            /* Yellow to Orange gradient, similar to the reference */
+            background: linear-gradient(180deg, #FFD54F 0%, #FF9800 100%);
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            /* Prominent shadow using the bottom orange color */
+            box-shadow: 0 15px 25px -5px rgba(255, 152, 0, 0.5), 0 5px 10px -2px rgba(255, 152, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3); /* subtle border */
+        }
+        .cta-button:hover {
+            /* Slightly darker gradient on hover for feedback */
+            background: linear-gradient(180deg, #FFC107 0%, #FF8A00 100%);
+            /* Larger shadow on hover */
+            box-shadow: 0 20px 30px -5px rgba(255, 152, 0, 0.8), 0 10px 15px -5px rgba(255, 152, 0, 0.4);
+            transform: scale(1.05);
+        }
+        /* ---------------------------------------- */
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header / Navigation -->
+    <header class="bg-white py-6 shadow-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center container-padding">
+            <!-- Logo Area (using uploaded file logo.png) -->
+            <div class="flex items-center space-x-2">
+                <!-- Placeholder for logo.png (using image URL as placeholder, as direct access is not possible) -->
+                <img src="/logo.png" alt="Логотип ACADEMY MARKETING" class="h-6 sm:h-8 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/150x30/f8f8f8/1D4ED8?text=ACADEMY+MARKETING';">
+                <span class="text-xl font-bold tracking-tight text-primary-accent hidden sm:block">АКАДЕМИЯ МАРКЕТИНГА</span>
+            </div>
+            <!-- Author in header -->
+            <div class="text-sm text-secondary-text hidden sm:block">
+                Автор курса: Евгений Андрианов
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Author Image -->
+        <section id="hero" class="pt-12 pb-16 md:py-24 container-padding max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between">
+            <div class="lg:w-1/2 lg:pr-12 text-center lg:text-left mb-10 lg:mb-0">
+                <h1 class="text-3xl md:text-5xl lg:text-5xl font-extrabold mb-4 leading-snug">
+                    Как выйти из чужой воронки и построить свою — <span class="text-primary-accent">которая приносит деньги</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-secondary-text mb-8">
+                    ✊ Ты уже каждый день в интернете. Пора сделать так, чтобы он начал работать на тебя
+                </p>
+
+                <!-- CTA and Pricing for Mobile/Small Screens -->
+                <div class="lg:hidden mb-10 border-t pt-6">
+                    <p class="text-3xl font-black text-secondary-accent mb-2">
+                        1500 ₽
+                    </p>
+                    <p class="text-sm font-medium text-secondary-text mb-4">
+                        1 действие → 1 оплата → 50% твои. Уже сегодня.
+                    </p>
+                    <button onclick="handleAccessClick()"
+                        class="cta-button font-bold text-lg px-8 py-4 rounded-3xl transition duration-300 transform uppercase tracking-wider w-full">
+                        👉 Получить доступ →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Author Image and Info Block -->
+            <div class="lg:w-1/2 flex justify-center">
+                <div class="relative w-full max-w-md bg-white rounded-xl shadow-2xl p-6 md:p-8 border border-gray-200">
+                    <!-- Placeholder for the author image (similar style to the uploaded reference image) -->
+                    <img src="/evgeniy.jpg" alt="Евгений Андрианов - Спикер интенсива" class="w-full h-auto rounded-lg shadow-lg mb-6">
+                    
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-text-dark">Евгений Андрианов</p>
+                        <p class="text-primary-accent text-sm font-semibold uppercase tracking-widest mt-1">
+                            Автор курса
+                        </p>
+                    </div>
+
+                    <!-- CTA and Pricing for Desktop -->
+                    <div class="mt-8 pt-6 border-t border-gray-200 hidden lg:block">
+                        <p class="text-3xl font-black text-secondary-accent mb-2">
+                            1500 ₽
+                        </p>
+                        <p class="text-sm font-medium text-secondary-text mb-4">
+                            1 действие → 1 оплата → 50% твои. Уже сегодня.
+                        </p>
+                        <button id="desktop-cta-button" onclick="handleAccessClick()"
+                            class="cta-button font-bold text-xl px-10 py-4 rounded-3xl transition duration-300 transform uppercase tracking-wider w-full">
+                            👉 Получить доступ →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- System Explanation Section -->
+        <section id="system-info" class="py-16 bg-gray-50 container-padding">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-8 text-center text-primary-accent">💡 Что это за схема:</h2>
+                <div class="space-y-6 text-center text-lg md:text-xl p-6 bg-white rounded-xl shadow-lg border border-gray-200">
+                    <p class="font-semibold text-2xl text-text-dark">
+                        Это не блог. Не курсы. Не продажа воздухов.
+                    </p>
+                    <p class="text-secondary-text leading-relaxed">
+                        Это готовая система, которая показывает, как зарабатывать на тренде **GPT**, 
+                        <span class="text-text-dark font-medium">без навыков, без вложений и без личного бренда.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You Get Section -->
+        <section id="what-you-get" class="py-16 container-padding">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-10 text-center">🧠 Что ты получишь:</h2>
+                <ul class="space-y-5">
+                    <li class="flex items-start space-x-4 p-5 bg-white rounded-lg shadow-md border border-primary-accent/10">
+                        <span class="text-primary-accent text-2xl font-extrabold flex-shrink-0 mt-1">1.</span>
+                        <p class="text-lg text-text-dark">
+                            **Пошаговое видео** — что делать, куда жать, как начать
+                        </p>
+                    </li>
+                    <li class="flex items-start space-x-4 p-5 bg-white rounded-lg shadow-md border border-primary-accent/10">
+                        <span class="text-primary-accent text-2xl font-extrabold flex-shrink-0 mt-1">2.</span>
+                        <p class="text-lg text-text-dark">
+                            **Конструктор своей “системы” под ключ** (всё готово, нужно только собрать)
+                        </p>
+                    </li>
+                    <li class="flex items-start space-x-4 p-5 bg-white rounded-lg shadow-md border border-primary-accent/10">
+                        <span class="text-primary-accent text-2xl font-extrabold flex-shrink-0 mt-1">3.</span>
+                        <p class="text-lg text-text-dark">
+                            **Инструменты**, которые делают всё за тебя
+                        </p>
+                    </li>
+                    <li class="flex items-start space-x-4 p-5 bg-white rounded-lg shadow-md border border-primary-accent/10">
+                        <span class="text-primary-accent text-2xl font-extrabold flex-shrink-0 mt-1">4.</span>
+                        <p class="text-lg text-text-dark">
+                            **Инструкцию**, как тратить 1–2 часа в день и получать результат
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- What You Don't Need Section -->
+        <section id="what-you-dont-need" class="py-16 bg-gray-50 container-padding">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-10 text-center">🚫 А что не нужно:</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex items-center space-x-3 p-4 bg-red-50 border border-red-300 rounded-lg shadow-inner">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        <p class="text-lg font-medium text-text-dark">Не нужно быть программистом</p>
+                    </div>
+                    <div class="flex items-center space-x-3 p-4 bg-red-50 border border-red-300 rounded-lg shadow-inner">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        <p class="text-lg font-medium text-text-dark">Не нужно снимать себя на видео</p>
+                    </div>
+                    <div class="flex items-center space-x-3 p-4 bg-red-50 border border-red-300 rounded-lg shadow-inner">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        <p class="text-lg font-medium text-text-dark">Не нужно разбираться в ИИ</p>
+                    </div>
+                    <div class="flex items-center space-x-3 p-4 bg-red-50 border border-red-300 rounded-lg shadow-inner">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        <p class="text-lg font-medium text-text-dark">Не нужно продавать в лоб</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section id="final-cta" class="py-16 container-padding bg-white">
+            <div class="max-w-4xl mx-auto text-center p-8 border-4 border-dashed border-secondary-accent rounded-2xl shadow-xl">
+                <h2 class="text-4xl font-extrabold mb-8 text-text-dark leading-snug">
+                    🔥 Готов выйти из инфо-бесконечности и сделать интернет своим источником дохода?
+                </h2>
+                
+                <p class="text-xl text-secondary-text mb-8">
+                    Жми кнопку ниже и получи доступ к системе.
+                </p>
+
+                <!-- Final CTA Button -->
+                <button id="final-cta-button" onclick="handleAccessClick()"
+                    class="cta-button font-bold text-xl px-12 py-5 rounded-3xl transition duration-300 transform uppercase tracking-wider w-full sm:w-auto">
+                    👉 Получить доступ →
+                </button>
+                <p class="mt-4 text-lg font-semibold text-text-dark">
+                    Цена: <span class="text-secondary-accent">1500 ₽</span>
+                </p>
+                <p class="text-sm text-secondary-text mt-1">
+                    1 действие → 1 оплата → 50% твои. Уже сегодня.
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="mt-12 py-6 border-t border-gray-300 text-center text-sm text-secondary-text bg-white">
+        <div class="max-w-7xl mx-auto container-padding">
+            <p>&copy; 2025 ACADEMY MARKETING. Все права защищены. Автор курса: Евгений Андрианов</p>
+            <p class="mt-2">Политика конфиденциальности и Оферта</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Button Action -->
+    <script>
+        // Функция, которая будет вызываться при нажатии кнопки
+        function handleAccessClick() {
+            // Вставьте вашу ссылку для оплаты здесь
+            const link = "ВАША_ССЫЛКА_ДЛЯ_ОПЛАТЫ_ЗДЕСЬ"; 
+            
+            // Если ссылка готова, можно использовать: window.location.href = link;
+
+            console.log("Кнопка 'Получить доступ' нажата. Ссылка: " + link);
+            
+            // Демонстрация: показ уведомления
+            showNotification('Готово! Ссылка для доступа будет открыта, когда вы ее подставите в код.', 'secondary-accent');
+        }
+
+        // Функция для создания простого кастомного уведомления (вместо alert)
+        function showNotification(message, color) {
+            const existingNotification = document.getElementById('custom-notification');
+            if (existingNotification) existingNotification.remove();
+
+            const notification = document.createElement('div');
+            notification.id = 'custom-notification';
+            // Используем пользовательские цвета для Tailwind
+            const bgColorClass = color === 'secondary-accent' ? 'bg-orange-500' : 'bg-blue-600';
+            const borderColorClass = color === 'secondary-accent' ? 'border-orange-700' : 'border-blue-800';
+            
+            notification.className = `fixed bottom-5 right-5 p-4 rounded-lg shadow-2xl z-50 text-white transition-all duration-300 transform translate-y-full opacity-0 ${bgColorClass} backdrop-blur-sm border-2 ${borderColorClass}`;
+            notification.innerHTML = `<p class="font-semibold">${message}</p>`;
+
+            document.body.appendChild(notification);
+            
+            // Анимация появления
+            setTimeout(() => {
+                notification.classList.remove('translate-y-full', 'opacity-0');
+            }, 50);
+
+            // Анимация исчезновения
+            setTimeout(() => {
+                notification.classList.add('translate-y-full', 'opacity-0');
+                setTimeout(() => notification.remove(), 500);
+            }, 5000);
+        }
+
+        // Назначаем обработчик на все кнопки CTA
+        document.querySelectorAll('button').forEach(button => {
+            if (button.className.includes('cta-button')) {
+                button.addEventListener('click', handleAccessClick);
+            }
+        });
+
+        // Инициализация (необходимо для Tailwind)
+        window.onload = () => {
+             console.log("Лендинг загружен.");
+        };
+    </script>
+</body>
+</html>
+
